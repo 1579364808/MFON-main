@@ -1,0 +1,14 @@
+transformers
+datasets
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+tqdm
+easydict
+tensorboardx
+opencv-python
+librosa
+nltk
+jieba

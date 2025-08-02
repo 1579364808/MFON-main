@@ -1,0 +1,207 @@
+# Data files and datasets (exclude large data files)
+data/
+datasets/
+dataset/
+raw_data/
+processed_data/
+*.pkl
+*.pickle
+*.csv
+*.h5
+*.hdf5
+*.hdf
+*.npy
+*.npz
+*.mat
+# Allow small config/metadata JSON files but exclude large data JSONs
+data/**/*.json
+data/**/*.jsonl
+*.json.gz
+*.jsonl.gz
+
+# Model files and checkpoints (exclude all model saves)
+*/save_models/
+*/all_model/
+save_models/
+all_model/
+checkpoints/
+checkpoint/
+models/saved/
+*.pth
+*.pt
+*.ckpt
+*.checkpoint
+*.model
+*.bin
+*.safetensors
+*.pb
+*.onnx
+*.tflite
+*.h5  # TensorFlow/Keras models
+*.keras
+
+# Pre-trained models and embeddings
+pretrained/
+pretrained_models/
+pre_trained/
+embeddings/
+word_embeddings/
+*.vec
+*.txt.gz
+*.bin.gz
+*.zip
+# Hugging Face cache
+.cache/
+transformers_cache/
+
+# Log files
+*/log/
+log/
+logs/
+*.log
+*.out
+*.err
+
+# Cache and temporary files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment and configuration
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+*.conda
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+# Allow small example notebooks but exclude large data-heavy notebooks
+**/data_*.ipynb
+**/experiment_*.ipynb
+**/large_*.ipynb
+
+# PyTorch specific
+*.pth.tar
+
+# TensorFlow specific
+*.tfrecord
+*.tfevents.*
+
+# Weights & Biases
+wandb/
+
+# MLflow
+mlruns/
+
+# Large media files (exclude large media but allow small images for documentation)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+*.wav
+*.mp3
+*.flac
+*.aac
+*.ogg
+# Allow small images for README/docs but exclude large images
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+data/**/*.gif
+data/**/*.bmp
+data/**/*.tiff
+*.pdf
+# Allow small PDFs for documentation
+!README*.pdf
+!docs/**/*.pdf
+
+# Compressed files (exclude large archives)
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+# Allow small config archives
+!config*.zip
+!setup*.zip
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project-specific ignores for MFON
+# Exclude large experimental results
+results/
+outputs/
+experiments/
+analysis_results/
+
+# Exclude temporary training files
+temp/
+tmp/
+temporary/
+
+# Exclude large feature files
+features/
+extracted_features/
+*.feat
+*.features
+
+# Allow small configuration and setup files
+!config/
+!configs/
+!setup/
+!requirements*.txt
+!environment*.yaml
+!environment*.yml
+!*.md
+!*.py
+!*.sh
+
+# Size-based rules (these are guidelines - Git LFS might be better for version control of large files)
+# Files larger than 100MB should generally not be in Git
+# Consider using Git LFS for files between 10MB-100MB that need version control
