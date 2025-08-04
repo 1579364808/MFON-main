@@ -1,0 +1,97 @@
+{
+  "search_config": {
+    "method": "random",
+    "max_trials": 2,
+    "primary_metric": "val_loss",
+    "minimize_metric": true
+  },
+  "search_stats": {
+    "duration_seconds": 4.450156927108765,
+    "total_trials": 2,
+    "successful_trials": 2,
+    "failed_trials": 0
+  },
+  "best_trial": {
+    "trial_idx": 1,
+    "params": {
+      "text_lr": 1e-05,
+      "audio_lr": 0.005,
+      "vision_lr": 5e-05,
+      "other_lr": 0.005,
+      "delta_va": 0.3,
+      "delta_nce": 0.1,
+      "delta_balance": 0.2,
+      "temperature": 1.761779794232421,
+      "patience": 2
+    },
+    "results": {
+      "val_loss": 0.9380954365977324,
+      "Corr": 0.6227889931109707,
+      "MAE": 0.6459226947442863,
+      "Has0_acc_2": 0.8780138575803836,
+      "Non0_acc_2": 0.6885978872825917
+    },
+    "val_loss": 0.9380954365977324,
+    "duration": 2.695227861404419,
+    "timestamp": "2025-08-02T16:47:32.366662",
+    "status": "success",
+    "mode": "simulation"
+  },
+  "best_score": 0.9380954365977324,
+  "all_trials": [
+    {
+      "trial_idx": 1,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.005,
+        "delta_va": 0.3,
+        "delta_nce": 0.1,
+        "delta_balance": 0.2,
+        "temperature": 1.761779794232421,
+        "patience": 2
+      },
+      "results": {
+        "val_loss": 0.9380954365977324,
+        "Corr": 0.6227889931109707,
+        "MAE": 0.6459226947442863,
+        "Has0_acc_2": 0.8780138575803836,
+        "Non0_acc_2": 0.6885978872825917
+      },
+      "val_loss": 0.9380954365977324,
+      "duration": 2.695227861404419,
+      "timestamp": "2025-08-02T16:47:32.366662",
+      "status": "success",
+      "mode": "simulation"
+    },
+    {
+      "trial_idx": 2,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.005,
+        "delta_va": 0.1,
+        "delta_nce": 0.1,
+        "delta_balance": 0.01,
+        "temperature": 1.694710252049653,
+        "patience": 5
+      },
+      "results": {
+        "val_loss": 1.0465084407463703,
+        "Corr": 0.7329047530379189,
+        "MAE": 0.5562822812929054,
+        "Has0_acc_2": 0.8890917079855425,
+        "Non0_acc_2": 0.6235703278809718
+      },
+      "val_loss": 1.0465084407463703,
+      "duration": 1.7529034614562988,
+      "timestamp": "2025-08-02T16:47:34.120434",
+      "status": "success",
+      "mode": "simulation"
+    }
+  ],
+  "timestamp": "2025-08-02T16:47:34.121385",
+  "mode": "simulation"
+}

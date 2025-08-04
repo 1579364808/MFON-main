@@ -1,0 +1,21 @@
+{
+  "trial_idx": 3,
+  "params": {
+    "text_lr": 1e-05,
+    "audio_lr": 0.001,
+    "delta_va": 0.1,
+    "temperature": 1.5
+  },
+  "results": {
+    "val_loss": 0.724914523328646,
+    "Corr": 0.8128434388664849,
+    "MAE": 0.7487800459256595,
+    "Has0_acc_2": 0.7307602607950106,
+    "Non0_acc_2": 0.6929973013367716
+  },
+  "val_loss": 0.724914523328646,
+  "duration": 3.4818227291107178,
+  "timestamp": "2025-08-02T16:57:11.561369",
+  "status": "success",
+  "mode": "real"
+}

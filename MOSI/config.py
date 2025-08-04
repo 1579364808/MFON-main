@@ -52,8 +52,12 @@ class MOSI:
         update_epochs = 4
         
         alen=audio_seq_len
-        vlen=vision_seq_len 
+        vlen=vision_seq_len
         p_len= 3
+
+        # ========== 可学习向量配置 ==========
+        # 控制是否使用可学习提示向量 (Learnable Prompt Vectors)
+        use_learnable_vectors = True  # True: 使用可学习向量, False: 不使用可学习向量
         
         class visionPretrain:
             lr = 1e-3 
@@ -78,7 +82,5 @@ class MOSI:
             
             epoch = 25
             
-            delta_va = 0.5
-            delta_tva = 0.5
-            delta_nce = 0.5
+            # 删除知识蒸馏和对比学习权重 - 不再使用
            

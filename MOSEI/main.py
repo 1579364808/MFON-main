@@ -30,8 +30,8 @@ def main():
     #Atrain(config, metrics, config.seed, train_data, valid_data)
     #Atest(config, metrics, test_data)
     
-    #TVA_train_fusion(config, metrics, config.seed, train_data, valid_data)
-    TVA_test_fusion(config, metrics,  test_data, )
+    TVA_train_fusion(config, metrics, config.seed, train_data, valid_data, test_data)
+    # TVA_test_fusion(config, metrics, test_data)  # 不再需要单独测试，训练中已包含
                     
 
 if __name__ == '__main__':

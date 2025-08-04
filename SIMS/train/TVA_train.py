@@ -7,7 +7,7 @@ from utils import write_config
 from models.classifier import BaseClassifier
 
 
-def TVA_train_fusion(config, metrics, seed, train_data, valid_data):
+def TVA_train_fusion(config, metrics, seed, train_data, valid_data, test_data):
     print('---------------TVA_EXP---------------')
     
     set_random_seed(seed)
@@ -35,10 +35,17 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data):
     text_params = [p for _, p in text_params] 
     vision_params = list(model.proj_v.named_parameters()) +\
                 list(model.vision_with_text.named_parameters()) 
-    vision_params = [p for _, p in vision_params] + [model.promptv_m]
+    vision_params = [p for _, p in vision_params]
+    # 只有在使用可学习向量时才添加到优化器参数中
+    if model.promptv_m is not None:
+        vision_params.append(model.promptv_m)
+
     audio_params = list(model.proj_a.named_parameters()) +\
                 list(model.audio_with_text.named_parameters())
-    audio_params = [p for _, p in audio_params] + [model.prompta_m]
+    audio_params = [p for _, p in audio_params]
+    # 只有在使用可学习向量时才添加到优化器参数中
+    if model.prompta_m is not None:
+        audio_params.append(model.prompta_m)
     model_params_other = [p for n, p in list(model.named_parameters()) if '_decoder' in n] 
 
     optimizer_grouped_parameters = [
@@ -93,11 +100,53 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data):
         if not left_epochs:
             optimizer.step()
 
-        _, result_loss = eval(model, metrics, valid_data, device)
-        
-        if result_loss < best_loss:
-            best_loss = result_loss
+        # 每轮训练后评估所有数据集并打印结果
+        train_results, train_loss = eval(model, metrics, train_data, device)
+        valid_results, valid_loss = eval(model, metrics, valid_data, device)
+        test_results, test_loss = eval(model, metrics, test_data, device)
+
+        # 打印完整的评估结果
+        print(f"\n📊 Epoch {epoch}/{total_epoch} 完整评估结果:")
+        print("=" * 80)
+
+        # 训练集结果
+        print("🔵 训练集结果:")
+        print(f"   Loss: {train_results['Loss']:.6f}")
+        print(f"   MAE: {train_results['MAE']:.6f}")
+        print(f"   Corr: {train_results['Corr']:.6f}")
+        print(f"   Mult_acc_2: {train_results['Mult_acc_2']:.6f}")
+        print(f"   Mult_acc_3: {train_results['Mult_acc_3']:.6f}")
+        print(f"   Mult_acc_5: {train_results['Mult_acc_5']:.6f}")
+        print(f"   F1_score: {train_results['F1_score']:.6f}")
+
+        # 验证集结果
+        print("🟡 验证集结果:")
+        print(f"   Loss: {valid_results['Loss']:.6f}")
+        print(f"   MAE: {valid_results['MAE']:.6f}")
+        print(f"   Corr: {valid_results['Corr']:.6f}")
+        print(f"   Mult_acc_2: {valid_results['Mult_acc_2']:.6f}")
+        print(f"   Mult_acc_3: {valid_results['Mult_acc_3']:.6f}")
+        print(f"   Mult_acc_5: {valid_results['Mult_acc_5']:.6f}")
+        print(f"   F1_score: {valid_results['F1_score']:.6f}")
+
+        # 测试集结果
+        print("🔴 测试集结果:")
+        print(f"   Loss: {test_results['Loss']:.6f}")
+        print(f"   MAE: {test_results['MAE']:.6f}")
+        print(f"   Corr: {test_results['Corr']:.6f}")
+        print(f"   Mult_acc_2: {test_results['Mult_acc_2']:.6f}")
+        print(f"   Mult_acc_3: {test_results['Mult_acc_3']:.6f}")
+        print(f"   Mult_acc_5: {test_results['Mult_acc_5']:.6f}")
+        print(f"   F1_score: {test_results['F1_score']:.6f}")
+
+        # 基于验证集损失保存最佳模型
+        if valid_loss < best_loss:
+            best_loss = valid_loss
             model.save_model()
+            print(f"\n🎉 新的最佳模型已保存! (验证集 Best Loss: {best_loss:.6f})")
+        else:
+            print(f"\n📈 当前最佳: 验证集 Loss: {best_loss:.6f}")
+        print("=" * 80)
 
 
 def eval(model, metrics, eval_data, device):

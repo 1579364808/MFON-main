@@ -1,0 +1,2019 @@
+{
+  "search_config": {
+    "method": "grid",
+    "max_trials": 100,
+    "primary_metric": "val_loss",
+    "minimize_metric": true
+  },
+  "search_stats": {
+    "duration_hours": 0.04606912321514554,
+    "total_trials": 100,
+    "successful_trials": 0,
+    "failed_trials": 100
+  },
+  "best_trial": null,
+  "best_score": Infinity,
+  "all_trials": [
+    {
+      "trial_idx": 1,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:52:52.785152",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 2,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.1,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:52:54.217056",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 3,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:52:56.130372",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 4,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:52:57.988792",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 5,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:52:59.419672",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 6,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:01.287030",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 7,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:02.739010",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 8,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:04.201185",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 9,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.1,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:05.639111",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 10,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:07.076709",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 11,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.1,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:08.552024",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 12,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:10.006231",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 13,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.1,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:11.441565",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 14,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.1,
+        "temperature": 0.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:12.891692",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 15,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:14.357978",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 16,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:15.809955",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 17,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:17.624517",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 18,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:19.497458",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 19,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 0.5,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:21.632823",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 20,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:23.079326",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 21,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:24.871535",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 22,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:26.313302",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 23,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:28.033890",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 24,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:29.478415",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 25,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:31.293306",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 26,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:32.718132",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 27,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:34.185498",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 28,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:35.998733",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 29,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.0001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:37.446475",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 30,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:38.924255",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 31,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 0.5,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:40.760469",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 32,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:42.199759",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 33,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:43.644742",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 34,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:45.071050",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 35,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:46.512472",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 36,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:48.364461",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 37,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 0.5,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:49.794015",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 38,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:51.260682",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 39,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 0.5,
+        "patience": 4,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:53.076228",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 40,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.001,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:54.929388",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 41,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.01,
+        "temperature": 0.5,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:56.736392",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 42,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:58.229830",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 43,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.1,
+        "temperature": 0.5,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:53:59.654202",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 44,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 0.5,
+        "patience": 4,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:01.077238",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 45,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:02.574534",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 46,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:04.759306",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 47,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:06.597854",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 48,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.01,
+        "temperature": 0.5,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:08.039994",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 49,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:10.237442",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 50,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:11.727884",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 51,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:13.274076",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 52,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 0.5,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:15.075296",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 53,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.1,
+        "delta_balance": 0.01,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:16.526150",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 54,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:18.034216",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 55,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:19.454203",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 56,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.1,
+        "delta_balance": 0.01,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:21.753712",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 57,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:23.186577",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 58,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:24.622918",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 59,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.1,
+        "temperature": 0.5,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:26.808198",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 60,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:28.258713",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 61,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:29.686242",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 62,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 0.5,
+        "patience": 4,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:32.301908",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 63,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:33.742623",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 64,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.0005,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.1,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:35.172099",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 65,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:36.614062",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 66,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:38.093115",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 67,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:39.517692",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 68,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:40.957229",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 69,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:42.776426",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 70,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:44.199654",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 71,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 2.0,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:45.642019",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 72,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:47.094316",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 73,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:48.546685",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 74,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:50.363518",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 75,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.1,
+        "delta_balance": 0.1,
+        "temperature": 1.5,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:52.168874",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 76,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:53.583750",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 77,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.01,
+        "temperature": 1.0,
+        "patience": 3,
+        "text_decay": 0.001,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:55.043659",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 78,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 0.5,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:56.507062",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 79,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:54:58.713412",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 80,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:00.158632",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 81,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.5,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:01.978200",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 82,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.001,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:03.426003",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 83,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:04.880116",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 84,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.001,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.01,
+        "temperature": 0.5,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:07.097573",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 85,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:08.546054",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 86,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.1,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:10.399585",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 87,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.01,
+        "temperature": 0.5,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:11.834170",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 88,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.01,
+        "vision_lr": 5e-05,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.001,
+        "delta_balance": 0.1,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:13.657348",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 89,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 2.0,
+        "patience": 4,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:15.521626",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 90,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.01,
+        "vision_lr": 0.001,
+        "other_lr": 0.005,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:17.370958",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 91,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:19.220365",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 92,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 2.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:20.713625",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 93,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.001,
+        "agm_lr_multiplier": 3.0,
+        "delta_va": 0.1,
+        "delta_nce": 0.01,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 2,
+        "text_decay": 0.05,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:22.300175",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 94,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.005,
+        "vision_lr": 0.0005,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:23.739580",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 95,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.0005,
+        "vision_lr": 0.0001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:26.228769",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 96,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.3,
+        "delta_nce": 0.0001,
+        "delta_balance": 0.05,
+        "temperature": 1.5,
+        "patience": 3,
+        "text_decay": 0.01,
+        "other_decay": 0.0001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:27.663538",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 97,
+      "params": {
+        "text_lr": 0.0001,
+        "audio_lr": 0.0005,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.3,
+        "delta_nce": 0.01,
+        "delta_balance": 0.05,
+        "temperature": 1.0,
+        "patience": 4,
+        "text_decay": 0.001,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:29.654073",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 98,
+      "params": {
+        "text_lr": 0.0005,
+        "audio_lr": 0.01,
+        "vision_lr": 0.0005,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 1.5,
+        "delta_va": 0.5,
+        "delta_nce": 0.1,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.05,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:31.457486",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 99,
+      "params": {
+        "text_lr": 1e-05,
+        "audio_lr": 0.001,
+        "vision_lr": 5e-05,
+        "other_lr": 0.01,
+        "agm_lr_multiplier": 2.0,
+        "delta_va": 0.8,
+        "delta_nce": 0.1,
+        "delta_balance": 0.2,
+        "temperature": 1.5,
+        "patience": 2,
+        "text_decay": 0.01,
+        "other_decay": 0.01
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:33.185309",
+      "status": "failed"
+    },
+    {
+      "trial_idx": 100,
+      "params": {
+        "text_lr": 5e-05,
+        "audio_lr": 0.005,
+        "vision_lr": 0.001,
+        "other_lr": 0.0005,
+        "agm_lr_multiplier": 1.0,
+        "delta_va": 0.5,
+        "delta_nce": 0.001,
+        "delta_balance": 0.2,
+        "temperature": 1.0,
+        "patience": 5,
+        "text_decay": 0.01,
+        "other_decay": 0.001
+      },
+      "error": "'types.SimpleNamespace' object has no attribute 'fusion_strategy'",
+      "timestamp": "2025-08-02T16:55:35.016509",
+      "status": "failed"
+    }
+  ],
+  "timestamp": "2025-08-02T16:55:35.029564"
+}

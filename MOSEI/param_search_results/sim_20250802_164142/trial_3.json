@@ -1,0 +1,26 @@
+{
+  "trial_idx": 3,
+  "params": {
+    "text_lr": 0.0001,
+    "audio_lr": 0.0005,
+    "vision_lr": 0.001,
+    "other_lr": 0.0005,
+    "delta_va": 0.3,
+    "delta_nce": 0.0001,
+    "delta_balance": 0.1,
+    "temperature": 1.635219480900721,
+    "patience": 4
+  },
+  "results": {
+    "val_loss": 0.5915333210959576,
+    "Corr": 0.615768278917023,
+    "MAE": 0.5533705638580749,
+    "Has0_acc_2": 0.7141326319756187,
+    "Non0_acc_2": 0.7591112376441516
+  },
+  "val_loss": 0.5915333210959576,
+  "duration": 2.6770403385162354,
+  "timestamp": "2025-08-02T16:41:48.684201",
+  "status": "success",
+  "mode": "simulation"
+}

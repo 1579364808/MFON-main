@@ -63,8 +63,18 @@ class TVA_fusion(nn.Module):
         self.vlen, self.alen = config.SIMS.downStream.vlen, config.SIMS.downStream.alen
         self.p_len = config.SIMS.downStream.p_len
 
-        self.prompta_m = nn.Parameter(torch.rand(self.alen, encoder_fea_dim))
-        self.promptv_m = nn.Parameter(torch.rand(self.vlen, encoder_fea_dim)) 
+        # ========== 可学习向量配置 ==========
+        self.use_learnable_vectors = config.SIMS.downStream.use_learnable_vectors
+
+        # 根据配置决定是否初始化可学习向量
+        if self.use_learnable_vectors:
+            self.prompta_m = nn.Parameter(torch.rand(self.alen, encoder_fea_dim))  # 音频可学习向量
+            self.promptv_m = nn.Parameter(torch.rand(self.vlen, encoder_fea_dim))  # 视觉可学习向量
+            print(f"✅ [SIMS] 使用可学习向量: 音频向量 {self.prompta_m.shape}, 视觉向量 {self.promptv_m.shape}")
+        else:
+            self.prompta_m = None
+            self.promptv_m = None
+            print("❌ [SIMS] 不使用可学习向量")
         
         self.text_encoder = TextEncoder(config=config)
         self.proj_t = nn.Linear(text_fea_dim, encoder_fea_dim)
@@ -112,12 +122,18 @@ class TVA_fusion(nn.Module):
         )
         x_t_embed = last_hidden_text[0]
         
-        proj_vision = self.proj_v(vision).permute(1, 0, 2) + self.promptv_m.unsqueeze(1)
+        # ========== 视觉特征处理 ==========
+        proj_vision = self.proj_v(vision).permute(1, 0, 2)  # [seq_v, bs, 768]
+        if self.use_learnable_vectors and self.promptv_m is not None:
+            proj_vision = proj_vision + self.promptv_m.unsqueeze(1)  # 添加可学习视觉向量
         h_tv = self.vision_with_text(last_hidden_text, proj_vision, proj_vision)    # [seq-v, bs, 768] [seq-t, bs, 768]--> [seq, bs,h]
-        x_v_embed = h_tv[0]   
-        
-        proj_audio = self.proj_a(audio).permute(1, 0, 2) + self.prompta_m.unsqueeze(1)
-        h_ta = self.audio_with_text(last_hidden_text, proj_audio, proj_audio) 
+        x_v_embed = h_tv[0]
+
+        # ========== 音频特征处理 ==========
+        proj_audio = self.proj_a(audio).permute(1, 0, 2)  # [seq_a, bs, 768]
+        if self.use_learnable_vectors and self.prompta_m is not None:
+            proj_audio = proj_audio + self.prompta_m.unsqueeze(1)  # 添加可学习音频向量
+        h_ta = self.audio_with_text(last_hidden_text, proj_audio, proj_audio)
         x_a_embed = h_ta[0]
         
         x = torch.cat([x_t_embed, x_v_embed, x_a_embed], dim=-1) # [bs, 3h]

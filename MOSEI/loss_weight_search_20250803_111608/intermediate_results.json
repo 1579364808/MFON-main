@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "trial_idx": 1,
+      "params": {
+        "delta_va": 0.1,
+        "delta_nce": 0.001
+      },
+      "best_loss": 0.48282748575455237,
+      "total_epochs": 6,
+      "stopped_early": true,
+      "duration": 779.6349987983704,
+      "timestamp": "2025-08-03T11:29:08.371218",
+      "status": "success",
+      "guidance_weights": {
+        "text_weight": 0.9999727010726929,
+        "vision_weight": 1.0265453965985216e-05,
+        "audio_weight": 1.7008724171319045e-05
+      }
+    }
+  ],
+  "best_result": {
+    "trial_idx": 1,
+    "params": {
+      "delta_va": 0.1,
+      "delta_nce": 0.001
+    },
+    "best_loss": 0.48282748575455237,
+    "total_epochs": 6,
+    "stopped_early": true,
+    "duration": 779.6349987983704,
+    "timestamp": "2025-08-03T11:29:08.371218",
+    "status": "success",
+    "guidance_weights": {
+      "text_weight": 0.9999727010726929,
+      "vision_weight": 1.0265453965985216e-05,
+      "audio_weight": 1.7008724171319045e-05
+    }
+  },
+  "best_score": 0.48282748575455237
+}

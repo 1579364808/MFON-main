@@ -1,0 +1,7 @@
+# 最佳参数配置
+# 复制以下参数到config.py的AGMtrain类中:
+
+text_lr = 1e-05
+audio_lr = 0.001
+delta_va = 0.1
+temperature = 1.0

@@ -51,8 +51,12 @@ class SIMS:
         update_epochs = 4
         
         alen=audio_seq_len
-        vlen=vision_seq_len 
+        vlen=vision_seq_len
         p_len= 3
+
+        # ========== 可学习向量配置 ==========
+        # 控制是否使用可学习提示向量 (Learnable Prompt Vectors)
+        use_learnable_vectors = True  # True: 使用可学习向量, False: 不使用可学习向量
         
         class visionPretrain:
             lr = 1e-4

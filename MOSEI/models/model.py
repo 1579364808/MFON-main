@@ -130,8 +130,17 @@ class TVA_fusion(nn.Module):
 
         # ========== 可学习提示符 (Learnable Prompts) ==========
         # 为音频和视觉模态添加可学习的提示向量，增强跨模态交互
-        self.prompta_m = nn.Parameter(torch.rand(self.alen, encoder_fea_dim))  # [500, 768] 音频提示
-        self.promptv_m = nn.Parameter(torch.rand(self.vlen, encoder_fea_dim))  # [500, 768] 视觉提示
+        self.use_learnable_vectors = config.MOSEI.downStream.use_learnable_vectors
+
+        # 根据配置决定是否初始化可学习向量
+        if self.use_learnable_vectors:
+            self.prompta_m = nn.Parameter(torch.rand(self.alen, encoder_fea_dim))  # [500, 768] 音频提示
+            self.promptv_m = nn.Parameter(torch.rand(self.vlen, encoder_fea_dim))  # [500, 768] 视觉提示
+            print(f"✅ 使用可学习向量: 音频向量 {self.prompta_m.shape}, 视觉向量 {self.promptv_m.shape}")
+        else:
+            self.prompta_m = None
+            self.promptv_m = None
+            print("❌ 不使用可学习向量")
 
         # ========== 文本处理模块 ==========
         self.text_encoder = TextEncoder(config=config)  # BERT文本编码器
@@ -173,6 +182,19 @@ class TVA_fusion(nn.Module):
         # 冻结的预训练编码器，用作教师模型
         self.vision_encoder_froze = VisionEncoder(config=config)  # 冻结的视觉编码器
         self.audio_encoder_froze = AudioEncoder(config=config)    # 冻结的音频编码器
+
+        # ========== 创新点：自适应引导模块 (Adaptive Guidance Module, AGM) ==========
+        # 门控网络：动态选举最适合担任向导的模态
+        # 灵感来源：Mixture of Experts (MoE) 和 门控循环单元 (GRU)
+        self.gating_network = nn.Sequential(
+            nn.Linear(encoder_fea_dim * 3, 128),  # 输入：三模态句子级特征拼接 [bs, 2304] → [bs, 128]
+            nn.ReLU(),                            # 非线性激活
+            nn.Dropout(0.1),                      # 防止过拟合
+            nn.Linear(128, 64),                   # 进一步降维 [bs, 128] → [bs, 64]
+            nn.ReLU(),
+            nn.Linear(64, 3),                     # 输出三个模态的权重 [bs, 64] → [bs, 3]
+            nn.Softmax(dim=-1)                    # 确保权重和为1，形成概率分布
+        )
 
         # ========== 最终融合分类器 ==========
         # 将三模态特征融合后进行情感预测
@@ -254,31 +276,94 @@ class TVA_fusion(nn.Module):
         )  # [seq, bs, 768]
 
         # 提取文本的句子级表示（取第一个位置，通常是[CLS]）
-        x_t_embed = last_hidden_text[0]  # [bs, 768]
+        x_t_embed_initial = last_hidden_text[0]  # [bs, 768]
 
-        # ========== 步骤2: 视觉-文本跨模态交互 ==========
-        # 视觉特征投影并添加可学习提示符
-        proj_vision = self.proj_v(vision).permute(1, 0, 2) + self.promptv_m.unsqueeze(1)
-        # [bs, 500, 35] → [bs, 500, 768] → [500, bs, 768] + [500, 1, 768] → [500, bs, 768]
+        # ========== 步骤1.5: 预处理其他模态特征（用于门控网络） ==========
+        # 视觉和音频特征的初步处理，获取句子级表示用于门控网络
+        proj_vision_initial = self.proj_v(vision)  # [bs, 500, 768]
+        proj_audio_initial = self.proj_a(audio)    # [bs, 500, 768]
 
-        # 跨模态注意力：Query=文本, Key&Value=视觉
-        h_tv = self.vision_with_text(last_hidden_text, proj_vision, proj_vision)
+        # 对视觉和音频序列进行平均池化，得到句子级表示
+        x_v_embed_initial = proj_vision_initial.mean(dim=1)  # [bs, 768]
+        x_a_embed_initial = proj_audio_initial.mean(dim=1)   # [bs, 768]
+
+        # ========== 创新点：自适应引导机制 (Adaptive Guidance Module, AGM) ==========
+        #
+        # 问题背景：
+        # MFON原始设计假设文本永远是最好的"向导"（Query），但当语气或表情极度夸张
+        # 而文字内容平淡时，这个假设会失效。
+        #
+        # 解决方案：
+        # 设计门控网络动态选举最适合担任向导的模态，从"固定向导"升级为"动态选举"
+        #
+        # 理论基础：
+        # 1. Mixture of Experts (MoE)：门控网络根据输入选择最合适的"专家"
+        # 2. 门控循环单元 (GRU)：动态控制信息流的门控机制
+
+        # 步骤1: 准备门控网络的输入
+        # 将三个模态的句子级特征拼接，形成全局上下文表示
+        gating_input = torch.cat([x_t_embed_initial, x_v_embed_initial, x_a_embed_initial], dim=-1)  # [bs, 2304]
+
+        # 步骤2: 动态选举向导模态
+        # 门控网络输出三个权重 [ω_t, ω_v, ω_a]，代表每个模态作为"向导"的置信度
+        # 权重满足：ω_t + ω_v + ω_a = 1（通过Softmax保证）
+        modality_weights = self.gating_network(gating_input)  # [bs, 3]
+        omega_t, omega_v, omega_a = modality_weights[:, 0], modality_weights[:, 1], modality_weights[:, 2]  # [bs]
+
+        # 步骤3: 构建动态Query
+        # 不再使用固定的文本作为Query，而是使用加权组合：
+        # Q_dynamic = ω_t * f^t + ω_v * f^v + ω_a * f^a
+
+        # 扩展权重维度以支持广播乘法 [bs] → [bs, 1, 1]
+        omega_t_expanded = omega_t.unsqueeze(1).unsqueeze(2)  # [bs, 1, 1]
+        omega_v_expanded = omega_v.unsqueeze(1).unsqueeze(2)  # [bs, 1, 1]
+        omega_a_expanded = omega_a.unsqueeze(1).unsqueeze(2)  # [bs, 1, 1]
+
+        # 准备序列格式的特征用于动态Query构建
+        text_seq = last_hidden_text  # [seq_t, bs, 768]
+
+        # 创建动态Query（以文本序列长度为准，保持与原架构的兼容性）
+        # 对于视觉和音频，使用句子级表示扩展到序列长度
+        dynamic_query = (
+            omega_t_expanded * text_seq.permute(1, 0, 2) +  # 文本序列 * 文本权重
+            omega_v_expanded * x_v_embed_initial.unsqueeze(1).expand(-1, text_seq.size(0), -1) +  # 视觉表示扩展
+            omega_a_expanded * x_a_embed_initial.unsqueeze(1).expand(-1, text_seq.size(0), -1)    # 音频表示扩展
+        )
+        dynamic_query = dynamic_query.permute(1, 0, 2)  # [seq_t, bs, 768]
+
+        # 动态Query的优势：
+        # 1. 当文本信息丰富时，ω_t 较大，主要依赖文本引导
+        # 2. 当表情夸张时，ω_v 较大，视觉模态主导跨模态交互
+        # 3. 当语气强烈时，ω_a 较大，音频模态成为主要向导
+
+        # ========== 步骤2: 视觉-动态Query跨模态交互 ==========
+        # 视觉特征投影并根据配置添加可学习提示符
+        proj_vision = self.proj_v(vision).permute(1, 0, 2)  # [bs, 500, 35] → [500, bs, 768]
+        if self.use_learnable_vectors and self.promptv_m is not None:
+            proj_vision = proj_vision + self.promptv_m.unsqueeze(1)  # 添加可学习视觉向量
+        # [500, bs, 768] + [500, 1, 768] → [500, bs, 768] (如果使用可学习向量)
+
+        # 跨模态注意力：Query=动态Query, Key&Value=视觉
+        h_tv = self.vision_with_text(dynamic_query, proj_vision, proj_vision)
         # 输入: Q=[seq_t, bs, 768], K=V=[500, bs, 768]
         # 输出: [seq_t, bs, 768] (文本序列长度保持不变)
 
-        # ========== 步骤3: 音频-文本跨模态交互 ==========
-        # 音频特征投影并添加可学习提示符
-        proj_audio = self.proj_a(audio).permute(1, 0, 2) + self.prompta_m.unsqueeze(1)
-        # [bs, 500, 74] → [bs, 500, 768] → [500, bs, 768] + [500, 1, 768] → [500, bs, 768]
+        # ========== 步骤3: 音频-动态Query跨模态交互 ==========
+        # 音频特征投影并根据配置添加可学习提示符
+        proj_audio = self.proj_a(audio).permute(1, 0, 2)  # [bs, 500, 74] → [500, bs, 768]
+        if self.use_learnable_vectors and self.prompta_m is not None:
+            proj_audio = proj_audio + self.prompta_m.unsqueeze(1)  # 添加可学习音频向量
+        # [500, bs, 768] + [500, 1, 768] → [500, bs, 768] (如果使用可学习向量)
 
-        # 跨模态注意力：Query=文本, Key&Value=音频
-        h_ta = self.audio_with_text(last_hidden_text, proj_audio, proj_audio)
+        # 跨模态注意力：Query=动态Query, Key&Value=音频
+        h_ta = self.audio_with_text(dynamic_query, proj_audio, proj_audio)
         # 输入: Q=[seq_t, bs, 768], K=V=[500, bs, 768]
         # 输出: [seq_t, bs, 768] (文本序列长度保持不变)
 
         # ========== 步骤4: 提取各模态的句子级表示 ==========
-        x_v_embed = h_tv[0]  # 视觉增强的文本表示 [bs, 768]
-        x_a_embed = h_ta[0]  # 音频增强的文本表示 [bs, 768]
+        x_t_embed = dynamic_query[0]  # 动态Query的句子级表示 [bs, 768]
+        x_v_embed = h_tv[0]          # 视觉增强的动态表示 [bs, 768]
+        x_a_embed = h_ta[0]          # 音频增强的动态表示 [bs, 768]
 
         # ========== 步骤5: 多模态特征融合 ==========
         # 拼接三个模态的句子级表示

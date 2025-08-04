@@ -17,16 +17,16 @@ def main():
     test_data = MOSIDataloader('test', config.MOSI.path.raw_data_path,batch_size=batch_size, shuffle=False, )
     metrics = Metrics()
     
-    config.seed = 1111  
+    # config.seed = 1111  
 
-    #Vtrain(config, metrics, config.seed, train_data, valid_data)
-    #Vtest(config, metrics, test_data)
+    # Vtrain(config, metrics, config.seed, train_data, valid_data)
+    # Vtest(config, metrics, test_data)
 
-    #Atrain(config, metrics, config.seed, train_data, valid_data)
-    #Atest(config, metrics, test_data)
+    # Atrain(config, metrics, config.seed, train_data, valid_data)
+    # Atest(config, metrics, test_data)
     
-    #TVA_train_fusion(config, metrics, config.seed, train_data, valid_data)
-    TVA_test_fusion(config, metrics,  test_data)
+    TVA_train_fusion(config, metrics, config.seed, train_data, valid_data, test_data)
+    # TVA_test_fusion(config, metrics, test_data)  # 不再需要单独测试，训练中已包含
                  
 
 if __name__ == '__main__':
