@@ -5,8 +5,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(path)
 
 import config
-from train.Vtrain import Vtrain, Vtest
-from train.Atrain import Atest, Atrain
+# 删除预训练相关导入 - 不再需要单模态预训练
 from train.TVA_train import TVA_train_fusion, TVA_test_fusion
 from utils import Metrics
 from data_loader import MOSEIDataloader

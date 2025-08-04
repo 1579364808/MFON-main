@@ -42,21 +42,7 @@ def write_config(config, log_path):
         d['TVAtrain'][key] = getattr(config.SIMS.downStream.TVAtrain, key)
     write_log(d, path=log_path)
     
-    d = {}
-    d['audioPretrain'] = {}
-    for key in dir(config.SIMS.downStream.audioPretrain):
-        if key.startswith('__') or key.startswith('_') :
-            continue
-        d['audioPretrain'][key] = getattr(config.SIMS.downStream.audioPretrain, key)
-    write_log(d, path=log_path)
-    
-    d = {}
-    d['visionPretrain'] = {}
-    for key in dir(config.SIMS.downStream.visionPretrain):
-        if key.startswith('__') or key.startswith('_') :
-            continue
-        d['visionPretrain'][key] = getattr(config.SIMS.downStream.visionPretrain, key)
-    write_log(d, path=log_path)
+    # 删除预训练配置日志 - 不再需要单模态预训练
    
 
 

@@ -56,15 +56,7 @@ class SIMS:
         # 控制是否使用可学习提示向量 (Learnable Prompt Vectors)
         use_learnable_vectors = True  # True: 使用可学习向量, False: 不使用可学习向量
         
-        class visionPretrain:
-            lr = 1e-4
-            epoch = 25
-            decay = 1e-3
-         
-        class audioPretrain:
-            lr = 1e-3
-            epoch = 25
-            decay = 1e-3
+        # 删除预训练配置 - 不再需要单模态预训练
       
         class TVAtrain:	
             text_lr = 5e-5

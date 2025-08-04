@@ -54,7 +54,6 @@ class VisionEncoder(nn.Module):
 
 
 # 删除VisionPretrain类 - 不再需要单模态预训练
-    def __init__(self, config, encoder_fea_dim=None):
         super(VisionPretrain, self).__init__()
         if encoder_fea_dim is None:
             encoder_fea_dim = config.SIMS.downStream.encoder_fea_dim

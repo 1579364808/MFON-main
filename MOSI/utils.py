@@ -34,21 +34,7 @@ def write_config(config, log_path):
         d['downStream'][key] = getattr(config.MOSI.downStream, key)
     write_log(d, path=log_path)
 
-    d = {}
-    d['audioPretrain'] = {}
-    for key in dir(config.MOSI.downStream.audioPretrain):
-        if key.startswith('__') or key.startswith('_') :
-            continue
-        d['audioPretrain'][key] = getattr(config.MOSI.downStream.audioPretrain, key)
-    write_log(d, path=log_path)
-    
-    d = {}
-    d['visionPretrain'] = {}
-    for key in dir(config.MOSI.downStream.visionPretrain):
-        if key.startswith('__') or key.startswith('_') :
-            continue
-        d['visionPretrain'][key] = getattr(config.MOSI.downStream.visionPretrain, key)
-    write_log(d, path=log_path)
+    # 删除预训练配置日志 - 不再需要单模态预训练
     
     d = {}
     d['TVAtrain'] = {}
