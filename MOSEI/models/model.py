@@ -178,10 +178,7 @@ class TVA_fusion(nn.Module):
             attn_mask=attn_mask                           # True: 使用注意力掩码
         )
 
-        # ========== 知识蒸馏模块 ==========
-        # 冻结的预训练编码器，用作教师模型
-        self.vision_encoder_froze = VisionEncoder(config=config)  # 冻结的视觉编码器
-        self.audio_encoder_froze = AudioEncoder(config=config)    # 冻结的音频编码器
+        # 删除知识蒸馏模块 - 不再使用
 
         # ========== 创新点：自适应引导模块 (Adaptive Guidance Module, AGM) ==========
         # 门控网络：动态选举最适合担任向导的模态
@@ -206,40 +203,10 @@ class TVA_fusion(nn.Module):
 
         # ========== 训练相关配置 ==========
         self.device = config.DEVICE                                    # 设备配置
-        self.criterion = nn.KLDivLoss(reduction='batchmean')          # KL散度损失(用于知识蒸馏)
         self.model_path = config.MOSEI.path.model_path + str(config.seed) + '/'  # 模型保存路径
         check_dir(self.model_path)  # 确保保存目录存在
-     
-    def load_froze(self):
-        """
-        加载并冻结预训练的单模态编码器
 
-        这是知识蒸馏的关键步骤：
-        1. 加载预训练的音频和视觉编码器权重
-        2. 冻结这些编码器的参数，使其作为教师模型
-        3. 在训练过程中，这些冻结的编码器提供蒸馏信号
-
-        知识蒸馏的作用：
-        - 保持单模态的专业知识
-        - 指导融合模型学习更好的特征表示
-        - 防止多模态训练中的模态偏移
-        """
-        # 构建预训练模型的加载路径
-        model_path = self.config.MOSEI.path.encoder_path + str(self.config.seed) + '/'
-
-        # 加载预训练的音频编码器权重
-        self.audio_encoder_froze.load_state_dict(
-            torch.load(model_path + 'best_loss_audio_encoder.pt', map_location=self.device)
-        )
-
-        # 加载预训练的视觉编码器权重
-        self.vision_encoder_froze.load_state_dict(
-            torch.load(model_path + 'best_loss_vision_encoder.pt', map_location=self.device)
-        )
-
-        # 冻结编码器参数，使其在训练中不更新
-        self.audio_encoder_froze.set_froze()   # 设置requires_grad=False
-        self.vision_encoder_froze.set_froze()  # 设置requires_grad=False
+    # 删除load_froze函数 - 不再需要加载冻结编码器
        
     def forward(self, text, vision, audio, mode='train'):
         """
@@ -376,22 +343,10 @@ class TVA_fusion(nn.Module):
         loss_v = loss_a = 0
         loss_nce = 0
 
+        # 删除知识蒸馏和对比学习 - 只返回预测结果
         if mode == 'train':
-            # 使用冻结的编码器获得教师信号
-            x_v_embed_froze = self.vision_encoder_froze(vision).squeeze()  # [bs, 768]
-            x_a_embed_froze = self.audio_encoder_froze(audio).squeeze()    # [bs, 768]
-
-            # 知识蒸馏损失：学生模型向教师模型学习
-            loss_v = self.get_KL_loss(x_v_embed, x_v_embed_froze)  # 视觉蒸馏损失
-            loss_a = self.get_KL_loss(x_a_embed, x_a_embed_froze)  # 音频蒸馏损失
-
-            # 对比学习损失：增强模态间的语义对齐
-            loss_nce = (self.get_InfoNCE_loss(x_v_embed, x_t_embed) +
-                       self.get_InfoNCE_loss(x_a_embed, x_t_embed))
-
-            return pred, (loss_v, loss_a, loss_nce)
+            return pred, None  # 不再返回额外损失
         else:
-            # 推理模式，只返回预测结果
             return pred, None
         
     def save_model(self, name=None):
@@ -448,86 +403,6 @@ class TVA_fusion(nn.Module):
         # 非严格加载，允许部分参数缺失
         self.load_state_dict(filtered_checkpoint, strict=False)
 
-    def get_distill_loss(self, input1, input2):
-        """
-        计算蒸馏损失（MSE版本）
-
-        Args:
-            input1: 学生模型的输出特征
-            input2: 教师模型的输出特征
-
-        Returns:
-            diff_loss: 均方误差损失
-
-        注意：当前代码中未使用此函数，实际使用的是KL散度版本
-        """
-        diff_loss = torch.mean((input1 - input2) * (input1 - input2))
-        return diff_loss
-
-    def get_KL_loss(self, x_embed, x_embed_target):
-        """
-        计算知识蒸馏的KL散度损失
-
-        Args:
-            x_embed: 学生模型的特征表示 [batch_size, feature_dim]
-            x_embed_target: 教师模型的特征表示 [batch_size, feature_dim]
-
-        Returns:
-            loss: KL散度损失
-
-        原理：
-        - 将特征转换为概率分布
-        - 学生模型学习模仿教师模型的分布
-        - 保持预训练模型的知识
-        """
-        # 学生模型：log_softmax（用于KL散度的第一个参数）
-        x_embed1 = F.log_softmax(x_embed, dim=1)
-
-        # 教师模型：softmax（用于KL散度的第二个参数）
-        x_embed_target1 = F.softmax(x_embed_target, dim=1)
-
-        # 计算KL散度：KL(teacher || student)
-        loss = self.criterion(x_embed1, x_embed_target1)
-        return loss
-
-    def get_InfoNCE_loss(self, input1, input2):
-        """
-        计算InfoNCE对比学习损失
-
-        Args:
-            input1: 第一个模态的特征表示 [batch_size, feature_dim]
-            input2: 第二个模态的特征表示 [batch_size, feature_dim]
-
-        Returns:
-            nce_loss: InfoNCE损失
-
-        原理：
-        - 正样本：同一样本的不同模态特征应该相似
-        - 负样本：不同样本的特征应该不相似
-        - 通过对比学习增强模态间的语义对齐
-
-        计算过程：
-        1. L2归一化：将特征向量归一化到单位球面
-        2. 正样本相似度：同一样本的模态间相似度
-        3. 负样本相似度：与batch内其他样本的相似度
-        4. InfoNCE损失：最大化正样本相似度，最小化负样本相似度
-        """
-        # 步骤1: L2归一化 - 将特征向量投影到单位球面
-        x1 = input1 / input1.norm(dim=1, keepdim=True)  # [bs, dim]
-        x2 = input2 / input2.norm(dim=1, keepdim=True)  # [bs, dim]
-
-        # 步骤2: 计算正样本相似度 - 同一样本的不同模态
-        pos = torch.sum(x1 * x2, dim=-1)  # [bs] 逐元素相乘后求和
-
-        # 步骤3: 计算负样本相似度 - 与batch内所有样本的相似度
-        # x1 @ x2.T: [bs, dim] @ [dim, bs] = [bs, bs]
-        # logsumexp: 数值稳定的log(sum(exp(x)))计算
-        neg = torch.logsumexp(torch.matmul(x1, x2.t()), dim=-1)  # [bs]
-
-        # 步骤4: InfoNCE损失 - 最大化 pos-neg
-        # 等价于最大化正样本概率：exp(pos) / sum(exp(all_similarities))
-        nce_loss = -(pos - neg).mean()
-
-        return nce_loss
+    # 删除所有损失函数 - 不再使用知识蒸馏和对比学习
     
     

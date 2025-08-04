@@ -81,7 +81,5 @@ class SIMS:
             
             epoch = 25
             
-            delta_va = 0.5
-            delta_tva = 0.5
-            delta_nce = 0.005
+            # 删除知识蒸馏和对比学习权重 - 不再使用
            

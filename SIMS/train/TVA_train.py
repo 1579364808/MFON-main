@@ -24,12 +24,11 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data, test_data):
     vision_decay = config.SIMS.downStream.TVAtrain.vision_decay
     other_decay = config.SIMS.downStream.TVAtrain.other_decay
             
-    delta_va = config.SIMS.downStream.TVAtrain.delta_va 
-    delta_nce = config.SIMS.downStream.TVAtrain.delta_nce
+    # 删除知识蒸馏和对比学习权重 - 不再使用
     
     model = TVA_fusion(config).to(config.DEVICE)
 
-    model.load_froze()
+    # 删除load_froze调用 - 不再需要加载冻结编码器
     
     text_params = list(model.proj_t.named_parameters()) + list(model.text_encoder.named_parameters())
     text_params = [p for _, p in text_params] 
@@ -57,7 +56,7 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data, test_data):
     optimizer = torch.optim.Adam(optimizer_grouped_parameters)
    
     loss, best_loss  = 0, 1e8
-    loss_a = loss_v = pred_loss = loss_nce = 0
+    pred_loss = 0  # 只保留预测损失
     device = config.DEVICE  
     total_epoch = config.SIMS.downStream.TVAtrain.epoch
     best_epoch = 1
@@ -66,16 +65,11 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data, test_data):
         model.train()
         left_epochs = update_epochs
         bar = tqdm(train_data, disable=False)
-        for index, batch_data in enumerate(bar):
+        for batch_data in bar:
             try:
-                bar.set_description("Epoch:%d|loss:%s|pred_loss:%s|loss_v:%s|loss_a:%s|loss_nce:%s" % (
-                    epoch, loss.item(), pred_loss.item(), loss_v.item(), loss_a.item(),  loss_nce.item()
-                    )
-                )
+                bar.set_description("Epoch:%d|Loss:[%.4f]|" % (epoch, loss.item()))
             except:
-                bar.set_description(
-                    "Epoch:%d|loss:%s|pred_loss:%s|loss_v:%s|loss:%s|loss_nce:%s" % (epoch, loss, pred_loss, loss_v, loss_a, loss_nce)
-                )
+                bar.set_description("Epoch:%d|Loss:[%.4f]|" % (epoch, loss))
             if left_epochs == update_epochs:
                 optimizer.zero_grad()
             left_epochs -= 1
@@ -85,11 +79,11 @@ def TVA_train_fusion(config, metrics, seed, train_data, valid_data, test_data):
             audio = batch_data['audio'].clone().detach().to(device).float()
             label = batch_data['labels']['M'].clone().detach().to(device)
         
-            pred, (loss_v, loss_a, loss_nce) = model(text, vision, audio, mode='train')
-            
+            pred, _ = model(text, vision, audio, mode='train')
+
             pred_loss = torch.mean((pred-label)*(pred-label))  # [bs]
-            
-            loss = pred_loss + delta_va * (loss_v + loss_a) + delta_nce * loss_nce
+
+            loss = pred_loss  # 只使用预测损失
             
             loss.backward()
            

@@ -94,8 +94,7 @@ class TVA_fusion(nn.Module):
         ) # Q:text, KV:audio
 
         
-        self.vision_encoder_froze = VisionEncoder(config=config)
-        self.audio_encoder_froze = AudioEncoder(config=config)
+        # 删除冻结编码器 - 不再使用知识蒸馏
         
         self.TVA_decoder = BaseClassifier(
             input_size=encoder_fea_dim * 3,
@@ -103,17 +102,11 @@ class TVA_fusion(nn.Module):
             output_size=1
         )
         self.device = config.DEVICE
-        self.criterion = nn.KLDivLoss(reduction='batchmean')
         self.model_path = config.SIMS.path.model_path + str(config.seed) + '/'
         check_dir(self.model_path)
-        
-     
-    def load_froze(self):
-        model_path = self.config.SIMS.path.encoder_path + str(self.config.seed) + '/'
-        self.audio_encoder_froze.load_state_dict(torch.load(model_path+ 'best_loss_audio_encoder.pt', map_location=self.device))
-        self.vision_encoder_froze.load_state_dict(torch.load(model_path + 'best_loss_vision_encoder.pt', map_location=self.device))
-        self.audio_encoder_froze.set_froze()
-        self.vision_encoder_froze.set_froze()
+
+
+    # 删除load_froze函数 - 不再需要加载冻结编码器
        
     def forward(self, text, vision, audio, mode='train'):
         last_hidden_text  = self.text_encoder(text)   # [bs, seq, h] [bs, h]
@@ -138,18 +131,12 @@ class TVA_fusion(nn.Module):
         
         x = torch.cat([x_t_embed, x_v_embed, x_a_embed], dim=-1) # [bs, 3h]
         pred = self.TVA_decoder(x).view(-1) # [bs]
-        
-        loss_v = loss_a = 0
-        loss_nce = 0
+
+        # 删除知识蒸馏和对比学习 - 只返回预测结果
         if mode == 'train':
-            x_v_embed_froze= self.vision_encoder_froze(vision).squeeze()
-            x_a_embed_froze = self.audio_encoder_froze(audio).squeeze()# [bs, h], [bs, h]
-            loss_v = self.get_KL_loss(x_v_embed, x_v_embed_froze)
-            loss_a = self.get_KL_loss(x_a_embed, x_a_embed_froze)  
-            loss_nce = self.get_InfoNCE_loss(x_v_embed, x_t_embed) + self.get_InfoNCE_loss(x_a_embed, x_t_embed) 
+            return pred, None  # 不再返回额外损失
         else:
-            return pred, (x_v_embed,x_a_embed)  
-        return pred, (loss_v, loss_a, loss_nce)
+            return pred, (x_v_embed, x_a_embed)
         
     def save_model(self,name=None):
         # save all modules
@@ -173,24 +160,6 @@ class TVA_fusion(nn.Module):
         self.load_state_dict(filtered_checkpoint, strict=False)
         
 
-    def get_distill_loss(self, input1, input2):
-        diff_loss = torch.mean((input1-input2)*(input1-input2))
-        return diff_loss
-    def get_KL_loss(self, x_embed, x_embed_target):
-        x_embed1 = F.log_softmax(x_embed, dim=1)
-        x_embed_target1 = F.softmax(x_embed_target, dim=1)
-        loss = self.criterion(x_embed1, x_embed_target1)
-        return loss
-    
-    def get_InfoNCE_loss(self, input1, input2):
-        
-        x1 = input1 / input1.norm(dim=1, keepdim=True)
-        x2 = input2 / input2.norm(dim=1, keepdim=True)
-
-        pos = torch.sum(x1*x2, dim=-1)   # bs
-        neg = torch.logsumexp(torch.matmul(x1, x2.t()), dim=-1)   # bs
-        nce_loss = -(pos - neg).mean()
-        
-        return nce_loss
+    # 删除所有损失函数 - 不再使用知识蒸馏和对比学习
     
     

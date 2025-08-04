@@ -79,8 +79,7 @@ class MOSEI:
 
             epoch = 25
 
-            delta_va = 0.3
-            delta_nce = 0.001
+            # 删除知识蒸馏和对比学习权重 - 不再使用
 
         class adaptiveTVAtrain:
             """
