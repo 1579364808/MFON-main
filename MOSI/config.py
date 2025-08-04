@@ -15,9 +15,9 @@ class MOSI:
     class path:
         raw_data_path = '../data/MOSI/unaligned_50.pkl'
         model_path = os.path.join(root_path, 'save_models/all_model/MOSI/')
-        if not os.path.exists(model_path):
+        if not os.path.exists(model_path): 
             os.makedirs(model_path)
-        # 删除encoder_path - 不再需要预训练单模态编码器
+        # 删除uni_fea_encoder路径 - 不再需要预训练单模态编码器
 
     class downStream:
         language = 'en'
