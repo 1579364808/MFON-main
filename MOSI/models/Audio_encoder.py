@@ -1,5 +1,3 @@
-
-        
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -36,8 +34,7 @@ class AudioEncoder(nn.Module):
                                 embed_dropout=self.attn_dropout,
                                 attn_mask=self.attn_mask) # True
             
-    def forward(self,audio):
-        
+    def forward(self, audio):
         proj_x_a = self.proj_a(audio) # [bs, seq, h]
         proj_x_a = proj_x_a.permute(1, 0, 2)
         
@@ -50,6 +47,3 @@ class AudioEncoder(nn.Module):
     def set_froze(self):
         for param in self.parameters():
             param.requires_grad = False
-
-
-# 删除AudioPretrain类 - 不再需要单模态预训练

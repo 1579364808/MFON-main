@@ -50,11 +50,12 @@ def write_config(config, log_path):
 def set_random_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
+    torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     os.environ['PYTHONHASHSEED'] = str(seed)
     torch.backends.cudnn.deterministic = True
-    torch.manual_seed(seed)
+    torch.backends.cudnn.benchmark = True   # 改为True，允许算法优化
 
 
 def multiclass_acc(y_pred, y_true):

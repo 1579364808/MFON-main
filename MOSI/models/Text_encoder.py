@@ -90,5 +90,3 @@ class TextPretrain(nn.Module):
             self.classifier.load_state_dict(torch.load(decoder_path, map_location=self.device))
             print(encoder_path)
             print(decoder_path)
-
-

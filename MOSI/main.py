@@ -1,7 +1,9 @@
 import os
 import sys
-path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(path)
+# 确保当前目录在 Python 路径中
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 import config
 from train.TVA_train import TVA_train_fusion, TVA_test_fusion
 # 删除预训练相关导入 - 不再需要单模态预训练

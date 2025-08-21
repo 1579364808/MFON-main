@@ -118,6 +118,31 @@ class MultiheadAttention(nn.Module):
                 assert False
                 
         attn_weights = F.softmax(attn_weights.float(), dim=-1).type_as(attn_weights)
+
+        # ========== AtCAF 插件：反事实注意力处理 ==========
+        try:
+            import sys
+            import os
+            sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            from atcaf_plugin import get_atcaf_plugin
+
+            plugin = get_atcaf_plugin()
+            if plugin is not None and plugin.enabled and getattr(plugin, 'training', False):
+                # 应用反事实干预
+                counterfactual_weights = plugin.apply_counterfactual_attention(
+                    attn_weights, plugin.counterfactual_type
+                )
+
+                # 存储原始权重用于后续计算
+                self._original_attn_weights = attn_weights.detach()
+                self._counterfactual_attn_weights = counterfactual_weights.detach()
+
+                # 在训练时使用反事实权重
+                attn_weights = counterfactual_weights
+        except ImportError:
+            # 如果插件不存在，继续正常流程
+            pass
+
         # attn_weights = F.relu(attn_weights)
         # attn_weights = attn_weights / torch.max(attn_weights)
         attn_weights = F.dropout(attn_weights, p=self.attn_dropout, training=self.training)
